@@ -1,27 +1,61 @@
-# DreadfulTomato
+# Dreadful Tomato
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.1.5.
+Dreadful Tomato is a new platform to find new movies and TV shows. The main objective is to
+help users to find information about their favourite TV shows and movies.
 
-## Development server
+To do so, the company has to create a new web app that allow users do some fancy things.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+## What do you have to do?
 
-## Code scaffolding
+Dreadful Tomato needs to implement an awesome webpage where the users could view information
+about almost every new TV Shows and movie.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+The Design team has sent us the new interface which has to be implemented. As you could see,
+there are three different pages.
 
-## Build
+* The first page is a landing page where user could select whether she wants to see TV shows
+  or movies and some claims and logo of Dreadful Tomato
+* The second one is the list of TV shows. Here, the user could filter TV shows by title and
+  release year. In that page the user will see a list of card with the Title, description
+  and image from each TV show.
+* The third one is quite similar, but for the movies. The user could filter by title and
+  release year as well, to see a list of cards with the information of every movie.
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+Here you could see the design of the 3 pages:
 
-## Running unit tests
+Home page:
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+![](images/Dreadful%20Tomato%20-%20HOME.png)
 
-## Running end-to-end tests
+TV shows page:
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+![](images/Dreadful%20Tomato%20-%20POPULAR%20SERIES.png)
 
-## Further help
+Movies page:
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+![](images/Dreadful%20Tomato%20-%20POPULAR%20MOVIES.png)
+
+## Technical Requirements
+
+Their CTO has no time to implement that, but she has defined some technical constraints:
+
+* This webapp has to be developed using Angular
+* Create reusable components
+* Create a **clean, maintainable and well-designed** code
+* Test your code until you are comfortable with that
+
+#### Considerations
+
+* To obtain the data of the TV Shows and Movies, you have to request [that file](https://static.rviewer.io/challenges/datasets/dreadful-tomatoes/data.json).
+* Use SCSS or SASS to manage your stylesheets
+* Use any component you want in the date picker to allow the user select the Year
+* Pay attention to hover effects (Home and Shows/Movies cards)
+
+To understand how you take decisions during the implementation, please write a README file
+explaining some of the most important parts of the application.
+
+---
+
+## How to submit your solution
+
+* Push your code to your public repository and send to us link with result
