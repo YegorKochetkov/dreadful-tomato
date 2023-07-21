@@ -1,0 +1,35 @@
+@import "../../../../sass/variables.scss";
+
+.logo {
+  position: relative;
+  width: 100%;
+
+  display: flex;
+  align-items: center;
+
+  background-color: transparent;
+
+  &::before {
+    position: absolute;
+    width: 100%;
+    z-index: -10;
+
+    content: "";
+
+    opacity: 0;
+    transition: opacity 0.2s;
+
+    box-shadow: 0 0 40px 12px $primary-accent-color;
+  }
+
+  &:hover {
+    &::before {
+      opacity: 1;
+    }
+  }
+
+  .logo-img {
+    width: 100%;
+    height: auto;
+  }
+}
