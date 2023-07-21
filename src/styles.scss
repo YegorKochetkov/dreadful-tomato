@@ -1,8 +1,11 @@
-/* You can add global styles to this file, and also import other style files */
+@import "./sass/variables.scss";
+
 * {
   box-sizing: border-box;
 }
 
 body {
-  font-family: "Poppins", sans-serif;
+  font-family: $font-stack;
+  color: $primary-light-color;
+  background-color: $primary-dark-color;
 }
