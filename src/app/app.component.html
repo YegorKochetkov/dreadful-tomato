@@ -1,9 +1,26 @@
 <header class="header">
-  <app-logo></app-logo>
-  <span>header</span>
+  <a
+    routerLink="/"
+    routerLinkActive="active"
+    [routerLinkActiveOptions]="{ exact: true }"
+    class="logo"
+  >
+    <app-logo></app-logo>
+  </a>
+  <nav class="main-nav">
+    <a routerLink="/movies" routerLinkActive="active" class="link"> Movies </a>
+    <a routerLink="/series" routerLinkActive="active" class="link"> Series </a>
+    <div class="spacer"></div>
+    <div class="link">Filters</div>
+    <a routerLink="/sign-in" routerLinkActive="active" class="link"> Login </a>
+    <a routerLink="/sign-up" routerLinkActive="active" class="sign-up-link">
+      Start your free trial
+    </a>
+  </nav>
 </header>
 
 <main>
   <h1>{{ title }}</h1>
+  <router-outlet></router-outlet>
 </main>
 <footer>footer</footer>
