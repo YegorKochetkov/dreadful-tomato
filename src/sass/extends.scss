@@ -1,0 +1,25 @@
+@use "../sass/variables.scss" as var;
+
+%link {
+  width: max-content;
+
+  padding-inline: 0.5rem;
+  padding-block: 1rem;
+
+  color: var.$primary-light-color;
+  text-decoration: none;
+
+  border: 2px solid transparent;
+  transition: border-color 0.3s;
+
+  cursor: pointer;
+
+  &:hover {
+    border-bottom: 2px solid var.$primary-accent-color;
+  }
+
+  &.active {
+    cursor: default;
+    background-color: var.$primary-accent-color;
+  }
+}
