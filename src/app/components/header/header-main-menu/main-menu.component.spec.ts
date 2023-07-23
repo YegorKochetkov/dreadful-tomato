@@ -1,16 +1,16 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AuthMenuComponent } from './auth-menu.component';
+import { MainMenuComponent } from './main-menu.component';
 
-describe('AuthMenuComponent', () => {
-  let component: AuthMenuComponent;
-  let fixture: ComponentFixture<AuthMenuComponent>;
+describe('MainMenuComponent', () => {
+  let component: MainMenuComponent;
+  let fixture: ComponentFixture<MainMenuComponent>;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [AuthMenuComponent],
+      imports: [MainMenuComponent]
     });
-    fixture = TestBed.createComponent(AuthMenuComponent);
+    fixture = TestBed.createComponent(MainMenuComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

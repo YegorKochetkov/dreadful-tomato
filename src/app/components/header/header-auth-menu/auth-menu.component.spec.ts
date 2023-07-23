@@ -8,7 +8,7 @@ describe('AuthMenuComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [AuthMenuComponent],
+      imports: [AuthMenuComponent]
     });
     fixture = TestBed.createComponent(AuthMenuComponent);
     component = fixture.componentInstance;

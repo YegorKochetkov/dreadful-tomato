@@ -2,10 +2,11 @@ import { CommonModule, Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { AuthMenuComponent } from './auth-menu/auth-menu.component';
+import { FiltersComponent } from '../filters/filters.component';
+import { AuthMenuComponent } from './header-auth-menu/auth-menu.component';
+import { NavbarFiltersComponent } from './header-filters-button/navbar-filters.component';
 import { HeaderLogoComponent } from './header-logo/header-logo.component';
-import { MainMenuComponent } from './main-menu/main-menu.component';
-import { NavbarFiltersComponent } from './navbar-filters/navbar-filters.component';
+import { MainMenuComponent } from './header-main-menu/main-menu.component';
 
 @Component({
   selector: 'app-header',
@@ -16,6 +17,7 @@ import { NavbarFiltersComponent } from './navbar-filters/navbar-filters.componen
     HeaderLogoComponent,
     MainMenuComponent,
     NavbarFiltersComponent,
+    FiltersComponent,
   ],
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss'],
