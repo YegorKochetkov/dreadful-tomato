@@ -1,0 +1,18 @@
+<header class="header">
+  <div class="max-width-container">
+    <div class="header-content">
+      <app-header-logo></app-header-logo>
+
+      <nav class="main-navbar">
+        <app-main-menu *ngIf="!isRoot"></app-main-menu>
+
+        <div class="spacer"></div>
+
+        <div class="aside-links">
+          <app-navbar-filters *ngIf="!isRoot"></app-navbar-filters>
+          <app-auth-menu></app-auth-menu>
+        </div>
+      </nav>
+    </div>
+  </div>
+</header>

@@ -1,0 +1,51 @@
+@use "../../../sass/variables.scss" as var;
+@use "../../../sass/extends.scss";
+
+.max-width-container {
+  @extend %max-width-container;
+}
+
+.header {
+  .header-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+
+    @media screen and (min-width: 760px) {
+      flex-direction: row;
+    }
+
+    .main-navbar {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      gap: 1.5rem;
+
+      width: 100%;
+
+      .spacer {
+        display: none;
+        flex-grow: 1;
+      }
+
+      .aside-links {
+        display: inline-flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 2px;
+      }
+
+      @media screen and (min-width: 760px) {
+        justify-content: space-between;
+        gap: 0;
+
+        .spacer {
+          display: block;
+        }
+      }
+    }
+  }
+}

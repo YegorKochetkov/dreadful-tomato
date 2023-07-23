@@ -3,21 +3,11 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { AuthMenuComponent } from './components/(header)/auth-menu/auth-menu.component';
-import { HeaderLogoComponent } from './components/(header)/header-logo/header-logo.component';
-import { MainMenuComponent } from './components/(header)/main-menu/main-menu.component';
-import { NavbarFiltersComponent } from './components/(header)/navbar-filters/navbar-filters.component';
+import { HeaderComponent } from './components/header/header.component';
 
 @NgModule({
   declarations: [AppComponent],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    MainMenuComponent,
-    AuthMenuComponent,
-    NavbarFiltersComponent,
-    HeaderLogoComponent,
-  ],
+  imports: [BrowserModule, AppRoutingModule, HeaderComponent],
   providers: [],
   bootstrap: [AppComponent],
   exports: [AppRoutingModule],
