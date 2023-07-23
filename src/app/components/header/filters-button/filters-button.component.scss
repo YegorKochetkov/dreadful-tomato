@@ -5,5 +5,7 @@
   border: none;
   border-color: transparent;
 
+  font: inherit;
+
   @extend %link;
 }
