@@ -8,13 +8,18 @@
 .filters {
   background-color: var.$primary-accent-color;
 
-  height: 0;
+  max-height: 0;
+
   transform: scaleY(0);
   transform-origin: top;
-  transition: all 0.4s;
+  transition: transform 0.3s, max-height 0.6s;
 
   &.show-filters {
-    height: 3.5rem;
+    max-height: 5rem;
     transform: scaleY(1);
+  }
+
+  & > .max-width-container {
+    font-size: 2rem;
   }
 }
