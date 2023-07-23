@@ -1,30 +1,27 @@
 <header class="header">
-  <a
-    routerLink="/"
-    routerLinkActive="active"
-    [routerLinkActiveOptions]="{ exact: true }"
-    class="logo"
-  >
-    <app-logo></app-logo>
-  </a>
-  <nav class="main-nav">
-    <app-main-menu></app-main-menu>
-    <div class="link">Filters</div>
-    <a
-      routerLink="/sign-in"
-      routerLinkActive="active"
-      class="link sign-in-link"
-    >
-      Login
-    </a>
-    <a routerLink="/sign-up" routerLinkActive="active" class="link button-link">
-      Start your free trial
-    </a>
-  </nav>
+  <div class="max-width-container">
+    <div class="header-content">
+      <app-header-logo></app-header-logo>
+
+      <nav class="main-navbar">
+        <app-main-menu *ngIf="!isRoot"></app-main-menu>
+
+        <div class="spacer"></div>
+
+        <div class="aside-links">
+          <app-navbar-filters *ngIf="!isRoot"></app-navbar-filters>
+          <app-auth-menu></app-auth-menu>
+        </div>
+      </nav>
+    </div>
+  </div>
 </header>
 
 <main>
-  <h1>{{ title }}</h1>
-  <router-outlet></router-outlet>
+  <div class="max-width-container">
+    <h1>{{ title }}</h1>
+    <router-outlet></router-outlet>
+  </div>
 </main>
-<footer>footer</footer>
+
+<footer><div class="max-width-container">footer</div></footer>
