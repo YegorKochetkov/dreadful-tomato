@@ -4,5 +4,21 @@
   'show-filters': isShown,
 }"
 >
-  <div class="max-width-container">filters works!</div>
+  <div class="max-width-container">
+    <form [formGroup]="filtersForm" (input)="log()" class="form">
+      <input
+        name="search"
+        placeholder="Name"
+        type="text"
+        formControlName="searchFilter"
+        class="form-search"
+      />
+      <input
+        name="date"
+        type="date"
+        formControlName="yearFilter"
+        class="form-date"
+      />
+    </form>
+  </div>
 </div>
