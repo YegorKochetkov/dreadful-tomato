@@ -1,5 +1,9 @@
 @use "../../../../sass/extends.scss";
 
 .link {
+  background: none;
+  border: none;
+  border-color: transparent;
+
   @extend %link;
 }
