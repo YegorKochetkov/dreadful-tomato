@@ -1,0 +1,10 @@
+@use "../../../sass/variables.scss" as var;
+@use "../../../sass/extends.scss";
+
+.max-width-container {
+  @extend %max-width-container;
+}
+
+.filters {
+  background-color: var.$primary-accent-color;
+}
