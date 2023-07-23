@@ -24,6 +24,7 @@ import { MainMenuComponent } from './main-menu/main-menu.component';
 })
 export class HeaderComponent implements OnInit {
   isRoot = false;
+  isFiltersDisplay = false;
 
   constructor(private location: Location, private router: Router) {}
 
@@ -31,5 +32,9 @@ export class HeaderComponent implements OnInit {
     this.router.events.subscribe(() => {
       this.isRoot = this.location.path() === '';
     });
+  }
+
+  toggleFiltersDisplay() {
+    this.isFiltersDisplay = !this.isFiltersDisplay;
   }
 }

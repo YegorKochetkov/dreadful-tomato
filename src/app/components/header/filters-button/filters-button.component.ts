@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 
 @Component({
   selector: 'app-filters-button',
@@ -8,4 +8,6 @@ import { Component } from '@angular/core';
   templateUrl: './filters-button.component.html',
   styleUrls: ['./filters-button.component.scss'],
 })
-export class FiltersButtonComponent {}
+export class FiltersButtonComponent {
+  @Output() toggleFiltersDisplay = new EventEmitter();
+}
