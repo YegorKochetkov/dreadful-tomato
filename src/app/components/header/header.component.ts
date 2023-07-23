@@ -24,6 +24,7 @@ import { MainMenuComponent } from './main-menu/main-menu.component';
 })
 export class HeaderComponent implements OnInit {
   isRoot = false;
+  isAuth = false;
   isFiltersDisplay = false;
 
   constructor(private location: Location, private router: Router) {}
@@ -31,6 +32,9 @@ export class HeaderComponent implements OnInit {
   ngOnInit() {
     this.router.events.subscribe(() => {
       this.isRoot = this.location.path() === '';
+      this.isAuth =
+        this.location.path() === '/sign-in' ||
+        this.location.path() === '/sign-up';
     });
   }
 

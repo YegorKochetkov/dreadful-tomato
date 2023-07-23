@@ -4,13 +4,13 @@
       <app-header-logo></app-header-logo>
 
       <nav class="main-navbar">
-        <app-main-menu *ngIf="!isRoot"></app-main-menu>
+        <app-main-menu *ngIf="!isRoot && !isAuth"></app-main-menu>
 
         <div class="spacer"></div>
 
         <div class="aside-links">
           <app-filters-button
-            *ngIf="!isRoot"
+            *ngIf="!isRoot && !isAuth"
             (toggleFiltersDisplay)="toggleFiltersDisplay()"
           ></app-filters-button>
           <app-auth-menu></app-auth-menu>
@@ -19,5 +19,5 @@
     </div>
   </div>
 
-  <app-filters [isShown]="isFiltersDisplay"></app-filters>
+  <app-filters [isShown]="isFiltersDisplay && !isRoot && !isAuth"></app-filters>
 </header>
