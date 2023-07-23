@@ -7,4 +7,14 @@
 
 .filters {
   background-color: var.$primary-accent-color;
+
+  height: 0;
+  transform: scaleY(0);
+  transform-origin: top;
+  transition: all 0.4s;
+
+  &.show-filters {
+    height: 3.5rem;
+    transform: scaleY(1);
+  }
 }
