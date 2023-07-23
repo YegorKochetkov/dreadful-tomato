@@ -1,16 +1,16 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { NavbarFiltersComponent } from './navbar-filters.component';
+import { FiltersButtonComponent } from './filters-button.component';
 
 describe('NavbarFiltersComponent', () => {
-  let component: NavbarFiltersComponent;
-  let fixture: ComponentFixture<NavbarFiltersComponent>;
+  let component: FiltersButtonComponent;
+  let fixture: ComponentFixture<FiltersButtonComponent>;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [NavbarFiltersComponent]
+      imports: [FiltersButtonComponent],
     });
-    fixture = TestBed.createComponent(NavbarFiltersComponent);
+    fixture = TestBed.createComponent(FiltersButtonComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

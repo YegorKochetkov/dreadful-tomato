@@ -3,10 +3,10 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { FiltersComponent } from '../filters/filters.component';
-import { AuthMenuComponent } from './header-auth-menu/auth-menu.component';
-import { NavbarFiltersComponent } from './header-filters-button/navbar-filters.component';
+import { AuthMenuComponent } from './auth-menu/auth-menu.component';
+import { FiltersButtonComponent } from './filters-button/filters-button.component';
 import { HeaderLogoComponent } from './header-logo/header-logo.component';
-import { MainMenuComponent } from './header-main-menu/main-menu.component';
+import { MainMenuComponent } from './main-menu/main-menu.component';
 
 @Component({
   selector: 'app-header',
@@ -16,7 +16,7 @@ import { MainMenuComponent } from './header-main-menu/main-menu.component';
     AuthMenuComponent,
     HeaderLogoComponent,
     MainMenuComponent,
-    NavbarFiltersComponent,
+    FiltersButtonComponent,
     FiltersComponent,
   ],
   templateUrl: './header.component.html',
