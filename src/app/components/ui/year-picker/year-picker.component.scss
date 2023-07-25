@@ -1,0 +1,39 @@
+@use "../../../../sass/variables.scss" as var;
+
+.form-date {
+  position: relative;
+
+  input {
+    width: 12.25rem;
+    height: 2rem;
+
+    padding-block: 0.25rem;
+
+    font-size: inherit;
+    text-align: center;
+
+    border: none;
+    border-radius: var.$primary-button-border-radius;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+  svg {
+    position: absolute;
+    left: 1rem;
+    top: 0.2rem;
+
+    height: 1.5rem;
+    width: auto;
+
+    z-index: 10;
+
+    color: var.$primary-accent-color;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+}
