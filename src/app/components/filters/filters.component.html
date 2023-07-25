@@ -5,20 +5,9 @@
 }"
 >
   <div class="max-width-container">
-    <form [formGroup]="filtersForm" (input)="log()" class="form">
-      <input
-        name="search"
-        placeholder="Name"
-        type="text"
-        formControlName="searchFilter"
-        class="form-search"
-      />
-      <input
-        name="date"
-        type="date"
-        formControlName="yearFilter"
-        class="form-date"
-      />
-    </form>
+    <div class="forms">
+      <app-search-filter></app-search-filter>
+      <app-year-picker></app-year-picker>
+    </div>
   </div>
 </div>

@@ -16,35 +16,29 @@
   transition: transform 0.3s, max-height 0.6s;
 
   &.show-filters {
-    max-height: 5rem;
+    max-height: 15rem;
     transform: scaleY(1);
   }
 
-  .form {
+  .forms {
     display: flex;
+
     flex-wrap: wrap;
     gap: 1rem;
     align-items: center;
 
-    .form-search,
-    .form-date {
-      padding-left: 2rem;
-      padding-right: 0.5rem;
-      padding-block: 0.35rem;
+    padding-inline: 0.25rem;
 
-      font-size: inherit;
-
-      border: none;
-      border-radius: var.$primary-button-border-radius;
-    }
-
-    .form-search {
+    app-search-filter {
       flex-grow: 1;
     }
 
-    .form-date {
-      min-width: 12.25rem;
+    app-year-picker {
       margin-right: 0.75rem;
+    }
+
+    @media screen and (min-width: var.$media-min-width) {
+      padding-inline: 0;
     }
   }
 }
