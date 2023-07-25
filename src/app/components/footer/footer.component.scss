@@ -1,0 +1,78 @@
+@use "../../../sass/variables.scss" as var;
+@use "../../../sass/extends.scss";
+
+.max-width-container {
+  @extend %max-width-container;
+}
+
+.footer {
+  & .max-width-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .footer-logo {
+    display: inline-block;
+
+    height: 2rem;
+    margin-bottom: 0.25rem;
+  }
+
+  .footer-menu {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+
+    list-style: none;
+
+    padding: 0;
+    margin: 0;
+    margin-bottom: 0.75rem;
+
+    text-transform: capitalize;
+    font-weight: bolder;
+
+    .footer-menu_item {
+      &:not(:last-child) {
+        margin-right: 1rem;
+      }
+
+      a {
+        color: var.$primary-light-color;
+        text-decoration-color: var.$primary-dark-color;
+        transition: text-decoration-color 0.3s;
+      }
+
+      &:hover {
+        a {
+          text-decoration-color: var.$primary-light-color;
+        }
+      }
+    }
+  }
+
+  .app-stores {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+
+    gap: 1rem;
+
+    a {
+      transition: transform 0.3s;
+
+      &:hover {
+        cursor: pointer;
+        transform: scale(1.1);
+      }
+    }
+  }
+
+  .copyright {
+    font-size: smaller;
+    color: var.$secondary-light-color;
+    text-align: center;
+    text-transform: capitalize;
+  }
+}

@@ -1,0 +1,21 @@
+<footer class="footer">
+  <div class="max-width-container">
+    <h2 class="footer-logo"><app-logo></app-logo></h2>
+    <menu class="footer-menu">
+      <li *ngFor="let item of menuItems" class="footer-menu_item">
+        <a href="{{ item.path }}">{{ item.label }}</a>
+      </li>
+    </menu>
+    <div class="app-stores">
+      <a href="#"
+        ><img src="../../../assets/app store.png" alt="app store"
+      /></a>
+      <a href="#"
+        ><img src="../../../assets/google-play.png" alt="google play"
+      /></a>
+    </div>
+    <p class="copyright">
+      Copyright 2020. Dreadful Tomato streaming. All rights reserved.
+    </p>
+  </div>
+</footer>
