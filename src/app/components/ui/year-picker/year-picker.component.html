@@ -1,5 +1,5 @@
 <div class="form-date">
-  <div (click)="openDatepickerOnClick(picker)">
+  <div (click)="openDatepickerOnClick(picker)" class="input-icon">
     <svg
       xmlns="http://www.w3.org/2000/svg"
       fill="none"
@@ -19,8 +19,6 @@
     matInput
     [matDatepicker]="picker"
     [formControl]="date"
-    (click)="openDatepickerOnClick(picker)"
-    (focus)="openDatepickerOnFocus(picker)"
     formControlName="yearFilter"
     autocomplete="off"
     (input)="log()"
