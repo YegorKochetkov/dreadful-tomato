@@ -38,6 +38,9 @@
     &.button-link {
       position: relative;
 
+      width: 12.25rem;
+      min-width: min-content;
+
       align-self: center;
       height: fit-content;
 
