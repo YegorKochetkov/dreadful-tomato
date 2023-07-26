@@ -65,7 +65,7 @@ export const MY_FORMATS = {
     ReactiveFormsModule,
   ],
 })
-export class YearPicker {
+export class YearPickerComponent {
   date = new FormControl(moment(null));
   header = YearPickerHeader;
 
