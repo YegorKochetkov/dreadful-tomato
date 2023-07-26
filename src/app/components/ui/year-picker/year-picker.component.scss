@@ -68,3 +68,7 @@ app-year-picker-header::after {
   transform: rotate(45deg);
   background-color: var.$primary-accent-color;
 }
+
+.mat-calendar-table .mat-calendar-body-cell-content {
+  border-radius: 0;
+}
