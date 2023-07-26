@@ -5,7 +5,7 @@ import { Router } from '@angular/router';
 import { FiltersComponent } from '../filters/filters.component';
 import { AuthMenuComponent } from './auth-menu/auth-menu.component';
 import { FiltersButtonComponent } from './filters-button/filters-button.component';
-import { HeaderLogoComponent } from './header-logo/header-logo.component';
+import { LogoLinkComponent } from '../logo-link/logo-link.component';
 import { MainMenuComponent } from './main-menu/main-menu.component';
 
 @Component({
@@ -14,7 +14,7 @@ import { MainMenuComponent } from './main-menu/main-menu.component';
   imports: [
     CommonModule,
     AuthMenuComponent,
-    HeaderLogoComponent,
+    LogoLinkComponent,
     MainMenuComponent,
     FiltersButtonComponent,
     FiltersComponent,

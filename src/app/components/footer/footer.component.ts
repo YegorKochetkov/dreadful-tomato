@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { LogoComponent } from '../ui/logo/logo.component';
+import { LogoLinkComponent } from '../logo-link/logo-link.component';
 
 const menuItemsFromServer = [
   { label: 'Home', path: '#' },
@@ -13,7 +13,7 @@ const menuItemsFromServer = [
 @Component({
   selector: 'app-footer',
   standalone: true,
-  imports: [CommonModule, LogoComponent],
+  imports: [CommonModule, LogoLinkComponent],
   templateUrl: './footer.component.html',
   styleUrls: ['./footer.component.scss'],
 })
