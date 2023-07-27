@@ -1,6 +1,11 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
+import {
+  FormControl,
+  FormGroup,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
 
 @Component({
   selector: 'app-search-filter',
@@ -10,9 +15,9 @@ import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
   styleUrls: ['./search-filter.component.scss'],
 })
 export class SearchFilterComponent {
-  searchFilter = new FormControl('', [Validators.required]);
+  @Input() public form!: FormGroup;
 
-  log() {
-    console.log(this.searchFilter.value);
+  focusOnInput(input: HTMLInputElement) {
+    input.focus();
   }
 }

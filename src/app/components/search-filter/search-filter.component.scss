@@ -1,0 +1,49 @@
+@use "../../../sass/variables.scss" as var;
+
+.search {
+  $height: var.$filters-height;
+
+  display: flex;
+  flex-wrap: nowrap;
+
+  .search-input {
+    height: $height;
+    width: 100%;
+
+    font: inherit;
+
+    border: none;
+    border-top-right-radius: var.$primary-button-border-radius;
+    border-bottom-right-radius: var.$primary-button-border-radius;
+  }
+
+  .search-button {
+    display: grid;
+    place-items: center;
+
+    width: $height + 1rem;
+    height: $height;
+
+    color: var.$primary-accent-color;
+    background-color: var.$primary-light-color;
+
+    border: none;
+    border-top-left-radius: var.$primary-button-border-radius;
+    border-bottom-left-radius: var.$primary-button-border-radius;
+
+    transition: color 0.3s;
+
+    &:hover {
+      cursor: pointer;
+
+      svg {
+        color: var.$secondary-accent-color;
+      }
+    }
+
+    svg {
+      height: $height * 0.8;
+      width: auto;
+    }
+  }
+}
