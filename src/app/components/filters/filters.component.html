@@ -1,13 +1,33 @@
 <div
   [ngClass]="{
-  'filters': true,
+  'filters-panel': true,
   'show-filters': isShown,
 }"
 >
   <div class="max-width-container">
-    <div class="forms">
-      <app-search-filter></app-search-filter>
-      <app-year-picker></app-year-picker>
-    </div>
+    <form
+      [formGroup]="filtersForm"
+      class="forms"
+      (change)="log2()"
+      (submit)="log1()"
+    >
+      <app-search-filter [form]="filtersForm"></app-search-filter>
+
+      <p-calendar
+        #pCalendar
+        view="year"
+        dateFormat="yy"
+        placeholder="1920-2000"
+        inputId="yearpicker"
+        formControlName="yearFilter"
+        [showIcon]="true"
+        [showClear]="true"
+        [styleClass]="getClassOf()"
+        (onShow)="setIsCalendarOpened(true)"
+        (onClose)="setIsCalendarOpened(false)"
+        (onClose)="log4()"
+        (onClear)="log5()"
+      ></p-calendar>
+    </form>
   </div>
 </div>

@@ -5,11 +5,13 @@
   @extend %max-width-container;
 }
 
-.filters {
+.filters-panel {
+  $height: var.$filters-height;
+
   background-color: var.$primary-accent-color;
 
   max-height: 0;
-  padding-block: 0.5rem;
+  padding: 0.5rem;
 
   transform: scaleY(0);
   transform-origin: top;
@@ -29,16 +31,156 @@
 
     padding-inline: 0.25rem;
 
+    @media screen and (min-width: var.$media-min-width) {
+      padding-inline: 0;
+    }
+
     app-search-filter {
       flex-grow: 1;
     }
+  }
+}
 
-    app-year-picker {
-      margin-right: 0.75rem;
+:host ::ng-deep {
+  $height: var.$filters-height;
+
+  .p-calendar {
+    transition: translate 0.2s;
+
+    &.calendar-opened::after {
+      content: "";
+
+      position: absolute;
+      right: 3rem;
+      bottom: -0.4rem;
+
+      width: 0.8rem;
+      height: 0.8rem;
+
+      background-color: var.$primary-accent-color;
+      transform: rotate(45deg);
     }
 
-    @media screen and (min-width: var.$media-min-width) {
-      padding-inline: 0;
+    #yearpicker {
+      height: $height;
+      width: var.$button-width - ($height + 1rem);
+      margin-right: 0.75rem;
+
+      font: inherit;
+
+      border: none;
+      border-top-right-radius: var.$primary-button-border-radius;
+      border-bottom-right-radius: var.$primary-button-border-radius;
+    }
+
+    .p-datepicker-trigger.p-button-icon-only {
+      order: -1;
+
+      display: grid;
+      place-items: center;
+
+      width: $height + 1rem;
+      height: $height;
+
+      color: var.$primary-accent-color;
+      background-color: var.$primary-light-color;
+
+      border: none;
+      border-top-left-radius: var.$primary-button-border-radius;
+      border-bottom-left-radius: var.$primary-button-border-radius;
+
+      transition: color 0.3s;
+
+      &:hover {
+        cursor: pointer;
+
+        svg {
+          color: var.$secondary-accent-color;
+        }
+      }
+
+      svg {
+        height: $height * 0.7;
+        width: $height;
+      }
+    }
+
+    .p-calendar-clear-icon.p-icon {
+      top: 20%;
+      right: 1.25rem;
+
+      height: $height * 0.6;
+      width: auto;
+
+      margin: 0;
+
+      color: var.$primary-accent-color;
+      transition: color 0.3s;
+
+      &:hover {
+        color: var.$secondary-accent-color;
+      }
+    }
+
+    .p-datepicker {
+      color: var.$secondary-light-color;
+      background-color: var.$primary-light-color;
+      width: 18rem;
+    }
+
+    .p-datepicker-header {
+      justify-content: center;
+      gap: 1rem;
+
+      padding: 1rem;
+
+      color: var.$primary-light-color;
+      background-color: var.$primary-accent-color;
+
+      .p-datepicker-title {
+        margin: 0;
+      }
+
+      button {
+        height: $height;
+        width: $height;
+
+        color: var.$primary-light-color;
+        background-color: var.$primary-accent-color;
+
+        border: none;
+        border-radius: 50%;
+
+        transition: all 0.3s;
+
+        &:hover {
+          background-color: var.$secondary-accent-color;
+        }
+
+        .p-icon-wrapper {
+          display: grid;
+          place-items: center;
+        }
+      }
+    }
+
+    .p-yearpicker-year {
+      padding-inline: 0.5rem;
+      padding-block: 1rem;
+
+      transition: all 0.3s;
+
+      &:hover {
+        color: var.$primary-dark-color;
+        background-color: var.$light-accent-color;
+      }
+    }
+
+    .p-highlight {
+      color: var.$primary-light-color;
+      background-color: var.$primary-accent-color;
+
+      transition: all 0.3s;
     }
   }
 }
