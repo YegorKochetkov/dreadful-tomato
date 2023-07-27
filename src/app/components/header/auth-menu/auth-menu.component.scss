@@ -38,7 +38,7 @@
     &.button-link {
       position: relative;
 
-      width: 12.25rem;
+      width: var.$button-width;
       min-width: min-content;
 
       align-self: center;
