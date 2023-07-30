@@ -1,16 +1,42 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { MoviesComponent } from './components/movies/movies.component';
-import { SeriesComponent } from './components/series/series.component';
-import { SignInComponent } from './components/sign-in/sign-in.component';
-import { SignUpComponent } from './components/sign-up/sign-up.component';
-
 const routes: Routes = [
-  { path: 'movies', component: MoviesComponent },
-  { path: 'series', component: SeriesComponent },
-  { path: 'sign-in', component: SignInComponent },
-  { path: 'sign-up', component: SignUpComponent },
+  {
+    path: '',
+    loadComponent: () =>
+      import('./components/promo-page/promo-page.component').then(
+        (m) => m.PromoPageComponent
+      ),
+  },
+  {
+    path: 'movies',
+    loadComponent: () =>
+      import('./components/movies/movies.component').then(
+        (m) => m.MoviesComponent
+      ),
+  },
+  {
+    path: 'series',
+    loadComponent: () =>
+      import('./components/series/series.component').then(
+        (m) => m.SeriesComponent
+      ),
+  },
+  {
+    path: 'sign-in',
+    loadComponent: () =>
+      import('./components/sign-in/sign-in.component').then(
+        (m) => m.SignInComponent
+      ),
+  },
+  {
+    path: 'sign-up',
+    loadComponent: () =>
+      import('./components/sign-up/sign-up.component').then(
+        (m) => m.SignUpComponent
+      ),
+  },
 ];
 
 @NgModule({
