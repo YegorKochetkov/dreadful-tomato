@@ -1,0 +1,10 @@
+@use "../../../sass/variables.scss" as var;
+
+.promo {
+  display: grid;
+  grid-template-rows: 50% 50%;
+
+  @media screen and (min-width: var.$media-min-width) {
+    grid-template-columns: 50% 50%;
+  }
+}
