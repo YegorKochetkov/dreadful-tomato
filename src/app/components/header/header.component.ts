@@ -27,14 +27,13 @@ export class HeaderComponent implements OnInit {
   isAuth = false;
   isFiltersDisplay = false;
 
-  constructor(private location: Location, private router: Router) {}
+  constructor(private router: Router) {}
 
   ngOnInit() {
     this.router.events.subscribe(() => {
-      this.isRoot = this.location.path() === '';
+      this.isRoot = this.router.url === '/';
       this.isAuth =
-        this.location.path() === '/sign-in' ||
-        this.location.path() === '/sign-up';
+        this.router.url === '/sign-in' || this.router.url === '/sign-up';
     });
   }
 
