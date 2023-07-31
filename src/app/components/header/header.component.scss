@@ -48,16 +48,4 @@
       }
     }
   }
-
-  app-filters {
-    display: block;
-    max-height: 0;
-    overflow: hidden;
-
-    transition: max-height 0.8s ease-out;
-
-    &.show-filters {
-      max-height: 12rem;
-    }
-  }
 }

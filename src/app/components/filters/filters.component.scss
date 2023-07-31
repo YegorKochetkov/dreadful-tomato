@@ -6,15 +6,38 @@
 }
 
 .filters-panel {
-  position: relative;
-  z-index: 10;
-
   $height: var.$filters-height;
   $padding: 0.5rem;
+
+  position: relative;
+  z-index: 10;
 
   background-color: var.$primary-accent-color;
 
   padding: $padding;
+  padding-block: 0;
+  max-height: 0;
+
+  transition: all 0.8s ease-out;
+
+  app-search-filter,
+  p-calendar {
+    transform: scaleY(0);
+    transform-origin: top;
+    opacity: 0;
+    transition: all 0.8s;
+  }
+
+  &.show-filters {
+    max-height: 12rem;
+    padding-block: $padding;
+
+    app-search-filter,
+    p-calendar {
+      transform: scaleY(1);
+      opacity: 1;
+    }
+  }
 
   .forms {
     display: flex;
