@@ -20,7 +20,6 @@ import { SearchFilterComponent } from '../search-filter/search-filter.component'
   styleUrls: ['./filters.component.scss'],
 })
 export class FiltersComponent {
-  @Input() isShown = false;
   isCalendarOpened = false;
 
   filtersForm = new FormGroup({

@@ -14,27 +14,7 @@
 
   background-color: var.$primary-accent-color;
 
-  height: 0;
-  padding-inline: $padding;
-  padding-block: 0;
-
-  transition: all 0.6s;
-
-  .forms {
-    transform: scaleY(0);
-    transform-origin: top;
-    transition: all 0.6s;
-  }
-
-  &.show-filters {
-    padding-block: $padding;
-    height: $height + ($padding * 2);
-
-    .forms {
-      transform: scaleY(1);
-      transform-origin: top;
-    }
-  }
+  padding: $padding;
 
   .forms {
     display: flex;

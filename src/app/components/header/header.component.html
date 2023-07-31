@@ -19,5 +19,9 @@
     </div>
   </div>
 
-  <app-filters [isShown]="isFiltersDisplay && !isRoot && !isAuth"></app-filters>
+  <app-filters
+    [ngClass]="{
+    'show-filters': isFiltersDisplay && !isRoot && !isAuth,
+  }"
+  ></app-filters>
 </header>
