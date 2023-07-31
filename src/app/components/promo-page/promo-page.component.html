@@ -1,9 +1,9 @@
 <div class="promo">
-  <section>
-    <app-promo-card [movie]="promoMovie"></app-promo-card>
-  </section>
+  <a routerLink="/movies" routerLinkActive="active" class="link">
+    <app-promo-card [movie]="movie"></app-promo-card>
+  </a>
 
-  <section>
-    <app-promo-card [movie]="promoSerial"></app-promo-card>
-  </section>
+  <a routerLink="/series" routerLinkActive="active" class="link">
+    <app-promo-card [movie]="serial"></app-promo-card>
+  </a>
 </div>

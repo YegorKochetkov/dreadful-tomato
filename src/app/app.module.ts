@@ -7,6 +7,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
+import { PromoPageComponent } from './components/promo-page/promo-page.component';
 
 @NgModule({
   declarations: [AppComponent],
@@ -17,6 +18,7 @@ import { FooterComponent } from './components/footer/footer.component';
     HttpClientModule,
     HeaderComponent,
     FooterComponent,
+    PromoPageComponent,
   ],
   providers: [],
   bootstrap: [AppComponent],

@@ -1,0 +1,51 @@
+@use "../../../sass/variables.scss" as var;
+
+.card {
+  position: relative;
+  height: 100%;
+
+  text-decoration: none;
+  color: var.$primary-light-color;
+
+  &:hover {
+    cursor: pointer;
+
+    .card-img {
+      filter: grayscale(0);
+    }
+
+    .card-title {
+      opacity: 1;
+    }
+  }
+
+  .card-img {
+    height: auto;
+    min-height: 12.5rem;
+    max-height: 42.5rem;
+
+    width: 100%;
+    min-width: 12.5rem;
+
+    object-fit: cover;
+    object-position: top;
+
+    filter: grayscale(1);
+    transition: filter 0.3s;
+  }
+
+  .card-title {
+    position: absolute;
+    bottom: 0;
+
+    width: 100%;
+    padding: 1rem;
+
+    text-transform: capitalize;
+    font-size: 2rem;
+
+    background-color: var.$primary-accent-color;
+    opacity: 0.8;
+    transition: opacity 0.3s;
+  }
+}
