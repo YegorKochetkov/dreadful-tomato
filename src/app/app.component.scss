@@ -1,5 +1,20 @@
 @use "../sass/extends.scss";
 
-.max-width-container {
-  @extend %max-width-container;
+.wrapper {
+  display: flex;
+  flex-direction: column;
+
+  app-header {
+    margin-bottom: 0.5rem;
+  }
+
+  main {
+    flex-grow: 1;
+  }
+
+  min-height: 100dvh;
+
+  .max-width-container {
+    @extend %max-width-container;
+  }
 }
