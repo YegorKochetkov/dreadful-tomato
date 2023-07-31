@@ -6,6 +6,9 @@
 }
 
 .filters-panel {
+  position: relative;
+  z-index: 10;
+
   $height: var.$filters-height;
   $padding: 0.5rem;
 
