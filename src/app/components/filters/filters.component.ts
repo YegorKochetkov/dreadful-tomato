@@ -4,7 +4,7 @@ import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { CalendarModule } from 'primeng/calendar';
 import { InputTextModule } from 'primeng/inputtext';
 
-import { SearchFilterComponent } from '../search-filter/search-filter.component';
+import { SearchFilterComponent } from '../ui/search-filter/search-filter.component';
 
 @Component({
   selector: 'app-filters',
