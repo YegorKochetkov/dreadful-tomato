@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { AppRoutingModule } from 'src/app/app-routing.module';
+import { RouterModule } from '@angular/router';
 import {
   MoviesService,
   PROMO_MOVIES,
@@ -13,7 +13,7 @@ import { PromoCardComponent } from '../ui/promo-card/promo-card.component';
 @Component({
   selector: 'app-promo-page',
   standalone: true,
-  imports: [CommonModule, AppRoutingModule, PromoCardComponent],
+  imports: [CommonModule, RouterModule, PromoCardComponent],
   templateUrl: './promo-page.component.html',
   styleUrls: ['./promo-page.component.scss'],
 })
