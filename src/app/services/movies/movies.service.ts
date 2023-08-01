@@ -23,7 +23,7 @@ type ApiResponse = {
 };
 
 // It should be gotten from server
-export const POST = {
+export const PROMO_MOVIES = {
   movie: 'Avengers: Endgame',
   serial: 'Breaking Bad',
 };

@@ -2,10 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { AppRoutingModule } from 'src/app/app-routing.module';
-import { MoviesService, POST } from 'src/app/services/movies/movies.service';
+import {
+  MoviesService,
+  PROMO_MOVIES,
+} from 'src/app/services/movies/movies.service';
 import { Movie } from 'src/app/services/movies/movies.service';
 
-import { PromoCardComponent } from '../promo-card/promo-card.component';
+import { PromoCardComponent } from '../ui/promo-card/promo-card.component';
 
 @Component({
   selector: 'app-promo-page',
@@ -26,8 +29,8 @@ export class PromoPageComponent implements OnInit {
 
   getPromo() {
     this.moviesService.getMovies().subscribe((movies) => {
-      this.movie = movies.find((movie) => movie.title === POST.movie);
-      this.serial = movies.find((movie) => movie.title === POST.serial);
+      this.movie = movies.find((movie) => movie.title === PROMO_MOVIES.movie);
+      this.serial = movies.find((movie) => movie.title === PROMO_MOVIES.serial);
     });
   }
 }
