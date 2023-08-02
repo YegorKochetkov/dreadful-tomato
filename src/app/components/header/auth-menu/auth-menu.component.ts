@@ -1,4 +1,4 @@
-import { AppRoutingModule } from 'src/app/app-routing.module';
+import { RouterModule } from '@angular/router';
 
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
@@ -6,7 +6,7 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'app-auth-menu',
   standalone: true,
-  imports: [CommonModule, AppRoutingModule],
+  imports: [CommonModule, RouterModule],
   templateUrl: './auth-menu.component.html',
   styleUrls: ['./auth-menu.component.scss'],
 })
