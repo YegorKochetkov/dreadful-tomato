@@ -1,0 +1,99 @@
+@use "../../../sass/variables.scss" as var;
+
+.movies {
+  .title {
+    font-size: 1.25rem;
+    font-weight: 500;
+    text-transform: capitalize;
+  }
+
+  .cards {
+    display: grid;
+    grid-template-columns: repeat(
+      auto-fit,
+      minmax(var.$movie-card-min-width, 1fr)
+    );
+    gap: 0.25rem;
+    grid-auto-rows: auto;
+  }
+}
+
+:host ::ng-deep {
+  .p-paginator {
+    margin-block: 2rem;
+  }
+
+  .p-paginator-pages {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.5rem;
+  }
+
+  .p-paginator-prev,
+  .p-paginator-next {
+    display: grid;
+    place-items: center;
+
+    width: 2rem;
+    height: 2rem;
+
+    .p-icon {
+      width: 1.5rem;
+      height: 1.5rem;
+    }
+
+    color: var.$primary-light-color;
+
+    border: none;
+    background: none;
+    border-radius: 50%;
+
+    &:hover {
+      cursor: pointer;
+      color: var.$secondary-light-color;
+    }
+
+    &:active {
+      transform: scale(0.9);
+    }
+
+    &:disabled {
+      color: var.$secondary-light-color;
+      cursor: default;
+      pointer-events: none;
+    }
+  }
+
+  .p-paginator-page {
+    display: grid;
+    place-items: center;
+
+    width: 2rem;
+    height: 2rem;
+
+    color: var.$primary-light-color;
+    opacity: 0.7;
+    transition: opacity 0.3s;
+
+    background: none;
+    background-color: var.$primary-accent-color;
+
+    border: none;
+    border-radius: 50%;
+
+    &.p-highlight {
+      opacity: 1;
+      cursor: default;
+      pointer-events: none;
+    }
+
+    &:active {
+      transform: scale(0.9);
+    }
+
+    &:hover {
+      opacity: 1;
+    }
+  }
+}
