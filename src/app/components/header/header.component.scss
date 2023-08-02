@@ -36,6 +36,12 @@
         flex-wrap: wrap;
         justify-content: center;
         gap: 2px;
+
+        @media screen and (max-width: 31rem) {
+          app-filters-button {
+            order: 1;
+          }
+        }
       }
 
       @media screen and (min-width: var.$media-min-width) {
