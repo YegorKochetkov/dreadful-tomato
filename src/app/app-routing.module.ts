@@ -19,8 +19,8 @@ const routes: Routes = [
   {
     path: 'series',
     loadComponent: () =>
-      import('./components/series/series.component').then(
-        (m) => m.SeriesComponent
+      import('./components/movies/movies.component').then(
+        (m) => m.MoviesComponent
       ),
   },
   {
