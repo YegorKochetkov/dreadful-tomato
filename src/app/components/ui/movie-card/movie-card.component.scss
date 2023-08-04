@@ -3,6 +3,7 @@
 .card {
   position: relative;
   height: 100%;
+  max-width: var.$movie-card-max-height / 1.5;
 
   text-decoration: none;
   color: var.$primary-light-color;

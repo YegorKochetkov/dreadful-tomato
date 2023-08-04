@@ -22,7 +22,7 @@
   .card-img {
     height: 100%;
     min-height: 12.5rem;
-    max-height: 42rem;
+    max-height: var.$movie-card-max-height;
 
     width: 100%;
     min-width: 12.5rem;
