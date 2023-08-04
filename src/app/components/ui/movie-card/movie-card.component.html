@@ -1,5 +1,10 @@
 <article class="card">
-  <img [src]="movie?.images?.posterArt?.url" [alt]="movie?.title" class="img" />
+  <img
+    [src]="movie?.images?.posterArt?.url"
+    [alt]="movie?.title"
+    class="img"
+    loading="lazy"
+  />
   <div class="wrapper">
     <h2 class="title" title="{{ movie?.title }}">{{ movie?.title }}</h2>
     <p class="year">
