@@ -1,22 +1,41 @@
 @use "../../../../sass/variables.scss" as var;
 
 .card {
+  $padding-block: 0.5rem;
+  $line-height: 2rem;
+  $font-size: 1.25rem;
+  $title-height: calc($line-height + $padding-block * 2);
+
   position: relative;
   height: 100%;
-  max-width: var.$movie-card-max-height / 1.5;
+  max-width: calc(var.$movie-card-max-height / 1.5);
 
   text-decoration: none;
   color: var.$primary-light-color;
 
+  overflow: hidden;
+
   &:hover {
     cursor: pointer;
+    transition: all 0.3s;
 
-    .card-title {
-      opacity: 1;
+    .wrapper {
+      min-height: 100%;
+      max-height: 40rem;
+      top: 5rem;
+
+      .title {
+        margin-bottom: 0.5rem;
+      }
+
+      .year,
+      .description {
+        opacity: 1;
+      }
     }
   }
 
-  .card-img {
+  .img {
     height: 100%;
     aspect-ratio: 3/4;
 
@@ -29,18 +48,58 @@
     transition: filter 0.3s;
   }
 
-  .card-title {
+  .wrapper {
     position: absolute;
-    bottom: 0;
+    top: calc(100% - $title-height);
 
+    max-height: $title-height;
     width: 100%;
-    padding: 1rem;
+    padding-block: $padding-block;
+    padding-inline: calc($padding-block * 2);
 
+    background-color: var.$primary-dark-transparent-color;
+    transition: all 0.3s;
+  }
+
+  .title {
+    width: 100%;
+    margin: 0;
+
+    font-size: $font-size;
+    line-height: $line-height;
     text-transform: capitalize;
-    font-size: 2rem;
 
-    background-color: var.$primary-accent-color;
-    opacity: 0.8;
-    transition: opacity 0.3s;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .year {
+    opacity: 0;
+
+    display: flex;
+    align-items: center;
+
+    padding: 0;
+    margin: 0;
+
+    font-weight: 700;
+    font-size: 1rem;
+    line-height: 1rem;
+
+    svg {
+      position: relative;
+      top: -0.1rem;
+
+      height: 1.25rem;
+      width: auto;
+      margin-right: 0.5rem;
+
+      color: var.$primary-accent-color;
+    }
+  }
+
+  .description {
+    opacity: 0;
   }
 }
