@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, OnDestroy, Output } from '@angular/core';
 
 @Component({
   selector: 'app-filters-button',
@@ -8,6 +8,10 @@ import { Component, EventEmitter, Output } from '@angular/core';
   templateUrl: './filters-button.component.html',
   styleUrls: ['./filters-button.component.scss'],
 })
-export class FiltersButtonComponent {
+export class FiltersButtonComponent implements OnDestroy {
   @Output() toggleFiltersDisplay = new EventEmitter();
+
+  ngOnDestroy() {
+    this.toggleFiltersDisplay.emit();
+  }
 }
