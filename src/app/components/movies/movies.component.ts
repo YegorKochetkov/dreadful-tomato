@@ -17,8 +17,8 @@ import { MovieCardComponent } from '../ui/movie-card/movie-card.component';
 })
 export class MoviesComponent implements OnInit {
   constructor(
-    private _moviesService: MoviesService,
-    private _activatedRoute: ActivatedRoute,
+    private moviesService: MoviesService,
+    private activatedRoute: ActivatedRoute,
     private router: Router
   ) {}
 
@@ -31,44 +31,48 @@ export class MoviesComponent implements OnInit {
   perPage: number = 10;
   pagesCount: number = 0;
 
-  url$ = this._activatedRoute.url;
-  params$ = this._activatedRoute.queryParams;
-  movies$ = this._moviesService.getMovies();
+  url$ = this.activatedRoute.url;
+  params$ = this.activatedRoute.queryParams;
+  movies$ = this.moviesService.getMovies();
+  filters$ = this.moviesService.filters$;
 
-  ngOnInit(): void {
-    combineLatest([this.url$, this.params$, this.movies$]).subscribe(
-      ([url, params, movies]) => {
-        this.programType = url[0].path;
-        this.currentPage = Number(params['page']) - 1 || 0;
-        this.perPage = Number(params['perPage']) || 10;
+  ngOnInit() {
+    combineLatest([
+      this.url$,
+      this.params$,
+      this.movies$,
+      this.filters$,
+    ]).subscribe(([url, params, movies, filters]) => {
+      this.programType = url[0].path;
+      this.currentPage = Number(params['page']) - 1 || 0;
+      this.perPage = Number(params['perPage']) || 10;
 
-        this.movies = movies.filter(
-          (movie) => movie.programType === this.programType
-        );
+      this.movies = this.filterByProgramType(movies, this.programType);
+      this.movies = this.filterByQuery(this.movies, filters.searchFilter);
+      this.movies = this.filterByYear(this.movies, filters.yearFilter);
 
-        this.totalPages = this.movies.length;
-        this.pagesCount = Math.ceil(this.totalPages / this.perPage);
+      this.totalPages = this.movies.length;
+      this.pagesCount = Math.ceil(this.totalPages / this.perPage);
 
-        if (this.currentPage > this.pagesCount) {
-          this.currentPage = this.pagesCount;
-        }
-
-        if (this.currentPage < 0) {
-          this.currentPage = 0;
-
-          this.router.navigate([], {
-            relativeTo: this._activatedRoute,
-            queryParams: { page: this.currentPage + 1 },
-            queryParamsHandling: 'merge',
-          });
-        }
-
-        this.moviesToDisplayOnPage = this.paginate(
-          this.currentPage,
-          this.perPage
-        );
+      if (this.currentPage > this.pagesCount) {
+        this.currentPage = this.pagesCount;
       }
-    );
+
+      if (this.currentPage < 0) {
+        this.currentPage = 0;
+
+        this.router.navigate([], {
+          relativeTo: this.activatedRoute,
+          queryParams: { page: this.currentPage + 1 },
+          queryParamsHandling: 'merge',
+        });
+      }
+
+      this.moviesToDisplayOnPage = this.paginate(
+        this.currentPage,
+        this.perPage
+      );
+    });
   }
 
   onPageChange(paginatorState: PaginatorState) {
@@ -85,5 +89,38 @@ export class MoviesComponent implements OnInit {
     const end = start + perPage;
 
     return [...this.movies.slice(start, end)];
+  }
+
+  private filterByProgramType(
+    movies: Movie[],
+    programType: string | undefined
+  ) {
+    if (!programType) {
+      return movies;
+    }
+
+    return movies.filter((movie) => movie.programType === programType);
+  }
+
+  private filterByQuery(movies: Movie[], filter: string | null) {
+    if (!filter) return movies;
+
+    return movies.filter((movie) => {
+      const isDescriptionMatch = movie.description
+        .toLocaleLowerCase()
+        .includes(filter.toLocaleLowerCase());
+
+      const isTitleMatch = movie.title
+        .toLocaleLowerCase()
+        .includes(filter.toLocaleLowerCase());
+
+      return isDescriptionMatch || isTitleMatch;
+    });
+  }
+
+  private filterByYear(movies: Movie[], year: number | null) {
+    if (!year) return movies;
+
+    return movies.filter((movie) => movie.releaseYear === year);
   }
 }

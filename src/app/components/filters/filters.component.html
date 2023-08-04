@@ -5,13 +5,11 @@
 }"
 >
   <div class="max-width-container">
-    <form
-      [formGroup]="filtersForm"
-      class="forms"
-      (change)="log2()"
-      (submit)="log1()"
-    >
-      <app-search-filter [form]="filtersForm"></app-search-filter>
+    <form [formGroup]="filtersForm" class="forms" (submit)="onSubmit()">
+      <app-search-filter
+        [form]="filtersForm"
+        [isOpen]="isOpen"
+      ></app-search-filter>
 
       <p-calendar
         #pCalendar
@@ -25,8 +23,8 @@
         [styleClass]="getClassOf()"
         (onShow)="setIsCalendarOpened(true)"
         (onClose)="setIsCalendarOpened(false)"
-        (onClose)="log4()"
-        (onClear)="log5()"
+        (onClose)="onYearPick()"
+        (onClear)="onYearPick()"
       ></p-calendar>
     </form>
   </div>

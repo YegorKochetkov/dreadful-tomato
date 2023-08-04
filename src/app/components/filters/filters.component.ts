@@ -1,10 +1,13 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+
 import { CalendarModule } from 'primeng/calendar';
 import { InputTextModule } from 'primeng/inputtext';
 
 import { SearchFilterComponent } from '../ui/search-filter/search-filter.component';
+import { MoviesService } from 'src/app/services/movies/movies.service';
 
 @Component({
   selector: 'app-filters',
@@ -19,14 +22,39 @@ import { SearchFilterComponent } from '../ui/search-filter/search-filter.compone
   templateUrl: './filters.component.html',
   styleUrls: ['./filters.component.scss'],
 })
-export class FiltersComponent {
+export class FiltersComponent implements OnInit {
+  constructor(
+    private moviesService: MoviesService,
+    private activatedRoute: ActivatedRoute,
+    private router: Router
+  ) {}
+
   @Input() isOpen = false;
   isCalendarOpened = false;
 
   filtersForm = new FormGroup({
-    searchFilter: new FormControl(''),
+    searchFilter: new FormControl<string | null>(null),
     yearFilter: new FormControl<Date | null>(null),
   });
+
+  ngOnInit() {
+    this.activatedRoute.queryParams.subscribe((params) => {
+      const year = params['year'];
+      const query = params['query'];
+      const yearFilter = year ? new Date(year) : null;
+      const searchFilter = query ? (query as string) : null;
+
+      this.filtersForm.setValue({
+        searchFilter,
+        yearFilter,
+      });
+
+      this.moviesService.setFilters({
+        yearFilter: yearFilter?.getFullYear() || null,
+        searchFilter,
+      });
+    });
+  }
 
   focusOnInput(input: HTMLInputElement) {
     input.focus();
@@ -36,23 +64,30 @@ export class FiltersComponent {
     if (this.isCalendarOpened) {
       return 'calendar-opened';
     }
+
     return '';
   }
 
   setIsCalendarOpened(value: boolean) {
     this.isCalendarOpened = value;
   }
-  // TODO: add query to url (on submit only?)
-  log1() {
-    console.log('on form submit', this.filtersForm.value);
+
+  onSubmit() {
+    const yearFilter =
+      this.filtersForm.controls.yearFilter.value?.getFullYear() || null;
+    const searchFilter =
+      this.filtersForm.controls.searchFilter.value?.trim() || null;
+
+    this.router.navigate([], {
+      relativeTo: this.activatedRoute,
+      queryParams: { query: searchFilter, year: yearFilter },
+      queryParamsHandling: 'merge',
+    });
+
+    this.moviesService.setFilters({ searchFilter, yearFilter });
   }
-  log2() {
-    console.log('on form change', this.filtersForm.value);
-  }
-  log4() {
-    console.log('on close', this.filtersForm.controls.yearFilter.value);
-  }
-  log5() {
-    console.log('on clear', this.filtersForm.controls.yearFilter.value);
+
+  onYearPick() {
+    this.onSubmit();
   }
 }
