@@ -1,11 +1,13 @@
-import { Component, Input } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import {
-  FormControl,
-  FormGroup,
-  ReactiveFormsModule,
-  Validators,
-} from '@angular/forms';
+  Component,
+  ElementRef,
+  Input,
+  OnChanges,
+  SimpleChanges,
+  ViewChild,
+} from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { FormGroup, ReactiveFormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-search-filter',
@@ -14,10 +16,18 @@ import {
   templateUrl: './search-filter.component.html',
   styleUrls: ['./search-filter.component.scss'],
 })
-export class SearchFilterComponent {
-  @Input() public form!: FormGroup;
+export class SearchFilterComponent implements OnChanges {
+  @Input() form!: FormGroup;
+  @Input() isOpen: boolean = false;
+  @ViewChild('search') input: ElementRef | undefined;
+
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes['isOpen'].currentValue === true) {
+      this.input?.nativeElement.focus();
+    }
+  }
 
   focusOnInput(input: HTMLInputElement) {
-    input.focus();
+    input?.focus();
   }
 }
