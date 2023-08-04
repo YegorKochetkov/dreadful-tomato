@@ -140,20 +140,25 @@
     .p-datepicker {
       color: var.$secondary-light-color;
       background-color: var.$primary-light-color;
-      width: 18rem;
     }
 
     .p-datepicker-header {
       justify-content: center;
       gap: 1rem;
 
-      padding: 1rem;
+      padding-inline: 1.5rem;
+      padding-block: 1rem;
 
       color: var.$primary-light-color;
       background-color: var.$primary-accent-color;
 
       .p-datepicker-title {
         margin: 0;
+      }
+
+      .p-datepicker-decade {
+        display: inline-block;
+        width: max-content;
       }
 
       button {
@@ -180,6 +185,7 @@
     }
 
     .p-yearpicker-year {
+      max-width: 33.3333%;
       padding-inline: 0.5rem;
       padding-block: 1rem;
 
