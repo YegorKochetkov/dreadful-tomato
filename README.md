@@ -1,6 +1,6 @@
 # Dreadful Tomato Test Task
 
-[DEMO]()
+## [Demo](https://yegorkochetkov.github.io/dreadful-tomato/)
 
 ## What do you have to do?
 
