@@ -7,7 +7,8 @@
 Dreadful Tomato needs to implement an awesome webpage where the users could view information
 about almost every new TV Shows and movie.
 
-There are three different pages.
+The Design team has sent us the new interface which has to be implemented. As you could see,
+there are three different pages.
 
 - The first page is a landing page where user could select whether she wants to see TV shows
   or movies and some claims and logo of Dreadful Tomato
@@ -21,15 +22,15 @@ Here you could see the design of the 3 pages:
 
 Home page:
 
-![home](images/Dreadful%20Tomato%20-%20HOME.png)
+![](images/Dreadful%20Tomato%20-%20HOME.png)
 
 TV shows page:
 
-![shows](images/Dreadful%20Tomato%20-%20POPULAR%20SERIES.png)
+![](images/Dreadful%20Tomato%20-%20POPULAR%20SERIES.png)
 
 Movies page:
 
-![movies](images/Dreadful%20Tomato%20-%20POPULAR%20MOVIES.png)
+![](images/Dreadful%20Tomato%20-%20POPULAR%20MOVIES.png)
 
 ## Technical Requirements
 
@@ -38,9 +39,12 @@ Movies page:
 - Create a **clean, maintainable and well-designed** code
 - Test your code until you are comfortable with that
 
-### Considerations
+#### Considerations
 
 - To obtain the data of the TV Shows and Movies, you have to request [that file](https://static.rviewer.io/challenges/datasets/dreadful-tomatoes/data.json).
 - Use SCSS or SASS to manage your stylesheets
 - Use any component you want in the date picker to allow the user select the Year
 - Pay attention to hover effects (Home and Shows/Movies cards)
+
+To understand how you take decisions during the implementation, please write a README file
+explaining some of the most important parts of the application.
