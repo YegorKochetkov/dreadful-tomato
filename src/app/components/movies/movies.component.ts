@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterModule, ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 
 import { Subject, combineLatest, takeUntil } from 'rxjs';
 import { PaginatorModule, PaginatorState } from 'primeng/paginator';
@@ -11,38 +11,40 @@ import { MovieCardComponent } from '../ui/movie-card/movie-card.component';
 @Component({
   selector: 'app-movies',
   standalone: true,
-  imports: [CommonModule, MovieCardComponent, RouterModule, PaginatorModule],
+  imports: [CommonModule, MovieCardComponent, PaginatorModule, RouterLink],
   templateUrl: './movies.component.html',
   styleUrls: ['./movies.component.scss'],
 })
 export class MoviesComponent implements OnInit, OnDestroy {
-  constructor(
-    private moviesService: MoviesService,
-    private activatedRoute: ActivatedRoute,
-    private router: Router
-  ) {}
-
-  private ngUnsubscribe = new Subject<void>();
+  movies$;
+  filters$;
+  route$;
 
   movies: Movie[] = [];
   moviesToDisplayOnPage: Movie[] = [];
   programType: string | undefined;
-
   totalPages: number = 0;
   currentPage: number = 1;
   perPage: number = 10;
   pagesCount: number = 0;
 
-  url$ = this.activatedRoute.url;
-  params$ = this.activatedRoute.queryParams;
-  movies$ = this.moviesService.getMovies();
-  filters$ = this.moviesService.filters$;
+  private ngUnsubscribe = new Subject<void>();
+
+  constructor(
+    private moviesService: MoviesService,
+    private activatedRoute: ActivatedRoute,
+    private router: Router
+  ) {
+    this.route$ = this.activatedRoute.queryParams;
+    this.movies$ = this.moviesService.getMovies();
+    this.filters$ = this.moviesService.filters$;
+  }
 
   ngOnInit() {
-    combineLatest([this.url$, this.params$, this.movies$, this.filters$])
+    combineLatest([this.movies$, this.filters$, this.route$])
       .pipe(takeUntil(this.ngUnsubscribe))
-      .subscribe(([url, params, movies, filters]) => {
-        this.programType = url[0].path;
+      .subscribe(([movies, filters, params]) => {
+        this.programType = this.router.url.split('?')[0].slice(1);
         this.currentPage = Number(params['page']) - 1 || 0;
         this.perPage = Number(params['perPage']) || 10;
 
