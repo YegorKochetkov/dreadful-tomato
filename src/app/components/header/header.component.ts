@@ -49,4 +49,8 @@ export class HeaderComponent implements OnInit, OnDestroy {
   toggleFiltersDisplay() {
     this.isFiltersDisplay = !this.isFiltersDisplay;
   }
+
+  closeFiltersDisplay() {
+    this.isFiltersDisplay = false;
+  }
 }
