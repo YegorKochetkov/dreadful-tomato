@@ -9,9 +9,10 @@ import { Component, EventEmitter, OnDestroy, Output } from '@angular/core';
   styleUrls: ['./filters-button.component.scss'],
 })
 export class FiltersButtonComponent implements OnDestroy {
+  @Output() closeFiltersDisplay = new EventEmitter();
   @Output() toggleFiltersDisplay = new EventEmitter();
 
   ngOnDestroy() {
-    this.toggleFiltersDisplay.emit();
+    this.closeFiltersDisplay.emit();
   }
 }

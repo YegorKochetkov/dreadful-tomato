@@ -12,6 +12,7 @@
           <app-filters-button
             *ngIf="!isRoot && !isAuth"
             (toggleFiltersDisplay)="toggleFiltersDisplay()"
+            (closeFiltersDisplay)="closeFiltersDisplay()"
           ></app-filters-button>
           <app-auth-menu></app-auth-menu>
         </div>
