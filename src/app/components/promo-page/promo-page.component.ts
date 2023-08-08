@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
+import { RouterLink, RouterLinkActive } from '@angular/router';
 
 import { Subject, takeUntil } from 'rxjs';
 
@@ -14,7 +14,7 @@ import { PromoCardComponent } from '../ui/promo-card/promo-card.component';
 @Component({
   selector: 'app-promo-page',
   standalone: true,
-  imports: [CommonModule, RouterModule, PromoCardComponent],
+  imports: [CommonModule, PromoCardComponent, RouterLink, RouterLinkActive],
   templateUrl: './promo-page.component.html',
   styleUrls: ['./promo-page.component.scss'],
 })
