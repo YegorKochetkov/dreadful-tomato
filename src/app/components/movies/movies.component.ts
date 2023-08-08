@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, ActivatedRoute, Router } from '@angular/router';
 
-import { combineLatest } from 'rxjs';
+import { Subject, combineLatest, takeUntil } from 'rxjs';
 import { PaginatorModule, PaginatorState } from 'primeng/paginator';
 
 import { Movie, MoviesService } from 'src/app/services/movies/movies.service';
@@ -15,12 +15,14 @@ import { MovieCardComponent } from '../ui/movie-card/movie-card.component';
   templateUrl: './movies.component.html',
   styleUrls: ['./movies.component.scss'],
 })
-export class MoviesComponent implements OnInit {
+export class MoviesComponent implements OnInit, OnDestroy {
   constructor(
     private moviesService: MoviesService,
     private activatedRoute: ActivatedRoute,
     private router: Router
   ) {}
+
+  private ngUnsubscribe = new Subject<void>();
 
   movies: Movie[] = [];
   moviesToDisplayOnPage: Movie[] = [];
@@ -37,42 +39,44 @@ export class MoviesComponent implements OnInit {
   filters$ = this.moviesService.filters$;
 
   ngOnInit() {
-    combineLatest([
-      this.url$,
-      this.params$,
-      this.movies$,
-      this.filters$,
-    ]).subscribe(([url, params, movies, filters]) => {
-      this.programType = url[0].path;
-      this.currentPage = Number(params['page']) - 1 || 0;
-      this.perPage = Number(params['perPage']) || 10;
+    combineLatest([this.url$, this.params$, this.movies$, this.filters$])
+      .pipe(takeUntil(this.ngUnsubscribe))
+      .subscribe(([url, params, movies, filters]) => {
+        this.programType = url[0].path;
+        this.currentPage = Number(params['page']) - 1 || 0;
+        this.perPage = Number(params['perPage']) || 10;
 
-      this.movies = this.filterByProgramType(movies, this.programType);
-      this.movies = this.filterByQuery(this.movies, filters.searchFilter);
-      this.movies = this.filterByYear(this.movies, filters.yearFilter);
+        this.movies = this.filterByProgramType(movies, this.programType);
+        this.movies = this.filterByQuery(this.movies, filters.searchFilter);
+        this.movies = this.filterByYear(this.movies, filters.yearFilter);
 
-      this.totalPages = this.movies.length;
-      this.pagesCount = Math.ceil(this.totalPages / this.perPage);
+        this.totalPages = this.movies.length;
+        this.pagesCount = Math.ceil(this.totalPages / this.perPage);
 
-      if (this.currentPage > this.pagesCount) {
-        this.currentPage = this.pagesCount;
-      }
+        if (this.currentPage > this.pagesCount) {
+          this.currentPage = this.pagesCount;
+        }
 
-      if (this.currentPage < 0) {
-        this.currentPage = 0;
+        if (this.currentPage < 0) {
+          this.currentPage = 0;
 
-        this.router.navigate([], {
-          relativeTo: this.activatedRoute,
-          queryParams: { page: this.currentPage + 1 },
-          queryParamsHandling: 'merge',
-        });
-      }
+          this.router.navigate([], {
+            relativeTo: this.activatedRoute,
+            queryParams: { page: this.currentPage + 1 },
+            queryParamsHandling: 'merge',
+          });
+        }
 
-      this.moviesToDisplayOnPage = this.paginate(
-        this.currentPage,
-        this.perPage
-      );
-    });
+        this.moviesToDisplayOnPage = this.paginate(
+          this.currentPage,
+          this.perPage
+        );
+      });
+  }
+
+  ngOnDestroy() {
+    this.ngUnsubscribe.next();
+    this.ngUnsubscribe.complete();
   }
 
   onPageChange(paginatorState: PaginatorState) {

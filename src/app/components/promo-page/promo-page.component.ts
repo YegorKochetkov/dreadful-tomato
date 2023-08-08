@@ -1,13 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
 import { RouterModule } from '@angular/router';
+
+import { Subject, takeUntil } from 'rxjs';
+
 import {
   MoviesService,
   PROMO_MOVIES,
 } from 'src/app/services/movies/movies.service';
 import { Movie } from 'src/app/services/movies/movies.service';
-
 import { PromoCardComponent } from '../ui/promo-card/promo-card.component';
 
 @Component({
@@ -17,20 +18,32 @@ import { PromoCardComponent } from '../ui/promo-card/promo-card.component';
   templateUrl: './promo-page.component.html',
   styleUrls: ['./promo-page.component.scss'],
 })
-export class PromoPageComponent implements OnInit {
+export class PromoPageComponent implements OnInit, OnDestroy {
   constructor(private moviesService: MoviesService) {}
+
+  private ngUnsubscribe = new Subject<void>();
 
   movie: Movie | undefined;
   serial: Movie | undefined;
 
-  ngOnInit(): void {
+  ngOnInit() {
     this.getPromo();
   }
 
+  ngOnDestroy() {
+    this.ngUnsubscribe.next();
+    this.ngUnsubscribe.complete();
+  }
+
   getPromo() {
-    this.moviesService.getMovies().subscribe((movies) => {
-      this.movie = movies.find((movie) => movie.title === PROMO_MOVIES.movie);
-      this.serial = movies.find((movie) => movie.title === PROMO_MOVIES.serial);
-    });
+    this.moviesService
+      .getMovies()
+      .pipe(takeUntil(this.ngUnsubscribe))
+      .subscribe((movies) => {
+        this.movie = movies.find((movie) => movie.title === PROMO_MOVIES.movie);
+        this.serial = movies.find(
+          (movie) => movie.title === PROMO_MOVIES.serial
+        );
+      });
   }
 }
