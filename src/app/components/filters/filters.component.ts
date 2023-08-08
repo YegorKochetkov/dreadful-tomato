@@ -1,7 +1,9 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+
+import { Subject, takeUntil } from 'rxjs';
 
 import { CalendarModule } from 'primeng/calendar';
 import { InputTextModule } from 'primeng/inputtext';
@@ -22,12 +24,14 @@ import { MoviesService } from 'src/app/services/movies/movies.service';
   templateUrl: './filters.component.html',
   styleUrls: ['./filters.component.scss'],
 })
-export class FiltersComponent implements OnInit {
+export class FiltersComponent implements OnInit, OnDestroy {
   constructor(
     private moviesService: MoviesService,
     private activatedRoute: ActivatedRoute,
     private router: Router
   ) {}
+
+  private ngUnsubscribe = new Subject<void>();
 
   @Input() isOpen = false;
   isCalendarOpened = false;
@@ -38,22 +42,29 @@ export class FiltersComponent implements OnInit {
   });
 
   ngOnInit() {
-    this.activatedRoute.queryParams.subscribe((params) => {
-      const year = params['year'];
-      const query = params['query'];
-      const yearFilter = year ? new Date(year) : null;
-      const searchFilter = query ? (query as string) : null;
+    this.activatedRoute.queryParams
+      .pipe(takeUntil(this.ngUnsubscribe))
+      .subscribe((params) => {
+        const year = params['year'];
+        const query = params['query'];
+        const yearFilter = year ? new Date(year) : null;
+        const searchFilter = query ? (query as string) : null;
 
-      this.filtersForm.setValue({
-        searchFilter,
-        yearFilter,
-      });
+        this.filtersForm.setValue({
+          searchFilter,
+          yearFilter,
+        });
 
-      this.moviesService.setFilters({
-        yearFilter: yearFilter?.getFullYear() || null,
-        searchFilter,
+        this.moviesService.setFilters({
+          yearFilter: yearFilter?.getFullYear() || null,
+          searchFilter,
+        });
       });
-    });
+  }
+
+  ngOnDestroy() {
+    this.ngUnsubscribe.next();
+    this.ngUnsubscribe.complete();
   }
 
   focusOnInput(input: HTMLInputElement) {
